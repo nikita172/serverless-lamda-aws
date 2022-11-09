@@ -1,0 +1,49 @@
+service: serverless-lambda-demo
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+plugins:
+  - serverless-offline
+
+functions:
+  create:
+    handler: handler.create
+    events:
+    - http:
+       path: todos
+       method: post
+    
+  getOne:
+    handler: handler.getOne
+    events:
+    - http:
+       path: todos/{id}
+       method: get
+      
+
+  getAll:
+    handler: handler.getAll
+    events:
+    - http:
+       path: todos
+       method: get
+     
+
+  update:
+    handler: handler.update
+    events:
+    - http:
+       path: todos/{id}
+       method: put
+     
+
+  delete:
+    handler: handler.delete
+    events:
+    - http:
+       path: todos/{id}
+       method: delete
+    
